@@ -1,3 +1,5 @@
+# Kotlin practice project
+This project is based on this [tutorial](https://youtu.be/Op4-3hwPLHI)
 ## Micronaut 3.8.0 Documentation
 
 - [User Guide](https://docs.micronaut.io/3.8.0/guide/index.html)
