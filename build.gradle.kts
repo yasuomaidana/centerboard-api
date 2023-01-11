@@ -1,7 +1,7 @@
 plugins {
-    id("org.jetbrains.kotlin.jvm") version "1.6.21"
-    id("org.jetbrains.kotlin.kapt") version "1.6.21"
-    id("org.jetbrains.kotlin.plugin.allopen") version "1.6.21"
+    kotlin("jvm") version "1.6.21"
+    kotlin("kapt") version "1.6.21"
+    kotlin("plugin.allopen") version "1.6.21"
     id("com.github.johnrengelman.shadow") version "7.1.2"
     id("io.micronaut.application") version "3.6.7"
 }
@@ -9,7 +9,7 @@ plugins {
 version = "0.1"
 group = "com.yasuo.centerboard"
 
-val kotlinVersion=project.properties.get("kotlinVersion")
+val kotlinVersion= project.properties["kotlinVersion"]
 repositories {
     mavenCentral()
 }
