@@ -1,0 +1,15 @@
+# This will also resolve to string in Decimal format
+scalar Decimal
+type Account{
+    id: ID!
+    name: String!
+    description: String!
+}
+
+type Transaction{
+    id: ID!
+    title: String!
+    description: String!
+    value: Decimal!
+    account: Account!
+}
