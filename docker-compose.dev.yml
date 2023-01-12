@@ -1,0 +1,14 @@
+version: '3.3'
+services:
+#  redis:
+#    image: "redis:4.0.2"
+#    ports:
+#      - "6379:6379"
+  postgres:
+    image: "postgres:10.4"
+    environment:
+      POSTGRES_USER: centerboard
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: centerboard
+    ports:
+      - "5432:5432"
