@@ -17,3 +17,6 @@ netty:
 endpoints:
     health:
         details-visible: anonymous
+    flyway:
+        enabled: true
+        sensitive: false
