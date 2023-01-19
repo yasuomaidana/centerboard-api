@@ -20,3 +20,10 @@ endpoints:
     flyway:
         enabled: true
         sensitive: false
+
+graphql:
+    enabled: true
+    path: /graphql
+    graphiql:
+        enabled: true
+        path: /graphiql
