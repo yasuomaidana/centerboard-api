@@ -1,15 +1,19 @@
 # This will also resolve to string in Decimal format
-scalar Decimal
+#scalar Decimal
 type Account{
     id: ID!
     name: String!
     description: String!
 }
 
+#This represents a single banking transactions
 type Transaction{
     id: ID!
     title: String!
     description: String!
-    value: Decimal!
-    account: Account!
+    value: String!
+}
+
+type Query{
+    accounts:[Account]!
 }
