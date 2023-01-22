@@ -3,7 +3,8 @@
 type Account{
     id: ID!
     name: String!
-    description: String!
+    description: String!,
+    positions:[Position]!
 }
 
 #This represents a single banking transactions
@@ -12,6 +13,14 @@ type Transaction{
     title: String!
     description: String!
     value: String!
+}
+
+type Position{
+    id: ID!
+    ticker: String!
+    shares: String!
+    price: String!
+    date:String!
 }
 
 type Query{
