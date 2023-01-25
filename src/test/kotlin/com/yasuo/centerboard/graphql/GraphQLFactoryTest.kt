@@ -1,16 +1,17 @@
 package com.yasuo.centerboard.graphql
 
 import io.micronaut.core.type.Argument
-import io.micronaut.http.HttpRequest
+import io.micronaut.http.HttpHeaders.ACCEPT
 import io.micronaut.http.HttpRequest.POST
 import io.micronaut.http.HttpStatus
 import io.micronaut.http.client.HttpClient
 import io.micronaut.http.client.annotation.Client
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest
 import jakarta.inject.Inject
-import org.junit.jupiter.api.Test
-
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.json.Json
 import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Test
 
 @MicronautTest
 class GraphQLFactoryTest {
@@ -18,28 +19,37 @@ class GraphQLFactoryTest {
     @field:Client("/")
     lateinit var client: HttpClient
 
-    val query = "{ \"query\": \"{ accounts{ name, description, positions { ticker } } }\" }"
-    val copied_query = """
-        accounts {
-    taxable
-    positions{
-      ticker
-      price
-      shares
+    private val query = """
+    {
+    accounts {
+        id
+        name
+        positions{
+        id
+        ticker
+        }
     }
-  }
+    }    
     """.trimIndent()
-    data class QueryRequest(val query:String)
+
+    data class QueryRequest(val query: String)
+
     @Test
     fun queryForAccountsAndPositions() {
 
-        val request: HttpRequest<String> = HttpRequest.POST("/graphql", query)
+        val response = client.toBlocking()
+            .exchange(
+                POST("/graphql", QueryRequest(query)), Argument.of(Map::class.java))
 
-        val rsp = client.toBlocking().exchange(request, Argument.of(Map::class.java))
-        val accounts = rsp.getBody(Map::class.java).get()["data"] as Map<*, *>
-        assertEquals(HttpStatus.OK, rsp.status())
-        assertNotNull(rsp.body())
+        assertEquals(HttpStatus.OK, response.status())
+        assertNotNull(response.body())
 
-        val response = client.toBlocking().exchange<QueryRequest,String>(POST("/graphql",QueryRequest(copied_query)))
+        val response2 = client.toBlocking().retrieve(POST("/graphql",QueryRequest(query)).header(ACCEPT,"application/json"))
+        val accounts = Json.decodeFromString<List<AccountPayload>>(response2.subSequence(20,response2.length-2).toString())
+        assertEquals(1,accounts[0].id)
+        assertEquals(2,accounts[1].id)
+        assertEquals("APPL",accounts[0].positions[0].ticker)
+        assertEquals(3,accounts.size)
     }
 }
+
