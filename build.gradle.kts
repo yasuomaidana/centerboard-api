@@ -2,6 +2,7 @@ plugins {
     kotlin("jvm") version "1.6.21"
     kotlin("kapt") version "1.6.21"
     kotlin("plugin.allopen") version "1.6.21"
+    kotlin("plugin.serialization") version "1.6.21"
     id("com.github.johnrengelman.shadow") version "7.1.2"
     id("io.micronaut.application") version "3.6.7"
 }
@@ -15,6 +16,7 @@ repositories {
 }
 
 dependencies {
+
     kapt("io.micronaut:micronaut-http-validation")
     implementation("io.micronaut:micronaut-http-client")
     implementation("io.micronaut:micronaut-jackson-databind")
@@ -39,6 +41,9 @@ dependencies {
     testImplementation("io.micronaut.test:micronaut-test-junit5:3.8.0")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.2")
     testImplementation("org.junit.jupiter:junit-jupiter-engine:5.9.2")
+
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1")
+
 
 }
 
