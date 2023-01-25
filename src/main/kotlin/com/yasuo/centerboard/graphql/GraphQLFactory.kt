@@ -51,7 +51,7 @@ class GraphQLFactory {
 
 @Singleton
 class PositionFetcher:DataFetcher<List<Position>>{
-    private val positions = mapOf<String,List<Position>>(
+    private val positions = mapOf(
             "1" to listOf(Position("1","APPL","22","1.2")),
             "2" to listOf(Position("1","AMZ","10","3.2")),
             "3" to listOf(Position("1","ALF","10","4.2"))
