@@ -44,6 +44,7 @@ dependencies {
 
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1")
 
+    implementation("com.expediagroup:graphql-kotlin-schema-generator:7.0.0-alpha.0")
 
 }
 
