@@ -6,6 +6,7 @@ import jakarta.inject.Inject
 import kotlinx.coroutines.delay
 import java.util.*
 
+@GraphQLDescription("Represents a given position")
 data class Position(
     val id:String,
     val ticker:String,
@@ -14,6 +15,7 @@ data class Position(
     val date: Date = Date()
     )
 
+@GraphQLDescription("Represents a given account")
 data class Account (val id:String,
                     val name:String,
                     val description:String = "",
