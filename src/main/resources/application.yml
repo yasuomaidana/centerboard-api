@@ -27,3 +27,11 @@ graphql:
     graphiql:
         enabled: true
         path: /graphiql
+
+redis:
+    uri: redis://127.0.0.1
+    timeout: 100ms
+    caches:
+        quotes:
+            charset: UTF-8
+            value-serializer: io.micronaut.jackson.serialize.JacksonObjectSerializer
