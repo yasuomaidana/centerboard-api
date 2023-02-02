@@ -21,6 +21,14 @@ data class Account (val id:String,
                     val description:String = "",
                     val taxable: Boolean = true
                     )
+@GraphQLDescription("Represents a quote")
+data class Quote(
+    private val symbol: String,
+    private val price:Double,
+    private val companyName:String,
+    private val high:Double,
+    private val low: Double,
+    private val lastUpdate:Long)
 
 class AccountQuery(@Inject var accountRepository: AccountRepository) {
 
