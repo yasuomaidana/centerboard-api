@@ -23,7 +23,17 @@ type Position{
     price: String!
     date:String!
 }
+type Quote{
+    symbol:String!
+    price:String!
+    companyName:String!
+    high:String!
+    low:String!
+    lastUpdate:String!
+}
 
 type Query{
     accounts:[Account]!
+    quotes:[Quote]!
+    quoteBySymbol(symbol:String):Quote!
 }
