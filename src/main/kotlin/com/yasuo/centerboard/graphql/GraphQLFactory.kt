@@ -2,6 +2,8 @@ package com.yasuo.centerboard.graphql
 
 import com.yasuo.centerboard.graphql.schema.Account
 import com.yasuo.centerboard.graphql.schema.Position
+import com.yasuo.centerboard.graphql.schema.Quote
+import com.yasuo.centerboard.quotes.QuoteService
 import com.yasuo.centerboard.repositories.AccountRepository
 import graphql.GraphQL
 import graphql.schema.DataFetcher
@@ -16,6 +18,7 @@ import io.micronaut.context.annotation.Factory
 import io.micronaut.core.io.ResourceResolver
 import jakarta.inject.Inject
 import jakarta.inject.Singleton
+import kotlinx.coroutines.runBlocking
 import java.io.BufferedReader
 import java.io.InputStreamReader
 
@@ -24,6 +27,8 @@ class GraphQLFactory {
 
     @Inject
     lateinit var accountRepository: AccountRepository
+    @Inject
+    lateinit var quotesFetcher: QuotesFetcher
 
     @Bean
     @Singleton
@@ -35,7 +40,10 @@ class GraphQLFactory {
         typeDefinitionRegistry.merge(schemaParser.parse(BufferedReader(InputStreamReader(graphqlSchema.get()))))
         val runtimeWiring = newRuntimeWiring()
             .type(newTypeWiring("Query")
-                .dataFetcher("accounts",AccountsFetcher()))
+                .dataFetcher("accounts",AccountsFetcher())
+                .dataFetcher("quotes",quotesFetcher.getQuotes())
+                .dataFetcher("quoteBySymbol",quotesFetcher.getBySymbol())
+            )
             .type(newTypeWiring("Account").dataFetcher("positions",PositionFetcher()))
             .build()
         val schemaGenerator = SchemaGenerator()
@@ -56,6 +64,23 @@ class PositionFetcher:DataFetcher<List<Position>>{
 
         val account =  environment.getSource<Account>()
         return positions.getOrDefault(account.id, emptyList())
+    }
+
+}
+
+@Singleton
+class QuotesFetcher{
+    @Inject
+    lateinit var quoteService: QuoteService
+    fun getQuotes(): DataFetcher<List<Quote>> {
+        return DataFetcher { quoteService.getQuotes() }
+    }
+
+    fun getBySymbol():DataFetcher<Quote>{
+        return DataFetcher { environment: DataFetchingEnvironment ->
+            val symbol: String = environment.getArgument("symbol")
+            runBlocking { quoteService.getQuoteBySymbol(symbol) }
+        }
     }
 
 }
