@@ -19,6 +19,7 @@ import io.micronaut.core.io.ResourceResolver
 import jakarta.inject.Inject
 import jakarta.inject.Singleton
 import kotlinx.coroutines.runBlocking
+import org.slf4j.LoggerFactory
 import java.io.BufferedReader
 import java.io.InputStreamReader
 
@@ -72,6 +73,7 @@ class PositionFetcher:DataFetcher<List<Position>>{
 class QuotesFetcher{
     @Inject
     lateinit var quoteService: QuoteService
+    private val logger = LoggerFactory.getLogger(QuotesFetcher::class.java)
     fun getQuotes(): DataFetcher<List<Quote>> {
         return DataFetcher { quoteService.getQuotes() }
     }
@@ -79,7 +81,8 @@ class QuotesFetcher{
     fun getBySymbol():DataFetcher<Quote>{
         return DataFetcher { environment: DataFetchingEnvironment ->
             val symbol: String = environment.getArgument("symbol")
-            runBlocking { quoteService.getQuoteBySymbol(symbol) }
+            logger.debug("Asking for {}",symbol)
+            runBlocking{ quoteService.getQuoteBySymbol(symbol) }
         }
     }
 
