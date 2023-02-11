@@ -43,8 +43,7 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter-engine:5.9.2")
 
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1")
-
-    implementation("com.expediagroup:graphql-kotlin-schema-generator:7.0.0-alpha.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
 
     implementation("io.micronaut.redis:micronaut-redis-lettuce")
     implementation("io.micronaut.cache:micronaut-cache-core")
