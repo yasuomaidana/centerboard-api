@@ -13,8 +13,8 @@ class QuoteService {
 
     private val logger = LoggerFactory.getLogger(QuoteService::class.java)
     val quotes = mapOf(
-        "ISLA" to Quote("A",500.0,"IDK IDK",1400.0,200.0,1L),
-        "BARCO" to Quote("B",100.0,"IDK WK",1500.0,5.0,1L)
+        "ISLA" to Quote("A",500.0,"IDK IDK",1400.0,200.0,1.0),
+        "BARCO" to Quote("B",100.0,"IDK WK",1500.0,5.0,1.0)
     )
     suspend fun getQuoteBySymbol(symbol: String):Quote{
 
@@ -23,7 +23,7 @@ class QuoteService {
         return quotes[symbol]!!
     }
 
-
+    @CachePut
     fun getQuotes():List<Quote>{
         logger.debug("Retrieving quotes")
         return quotes.map { (_,value) -> return listOf(value) }
