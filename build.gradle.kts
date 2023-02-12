@@ -45,6 +45,9 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
 
+    implementation("com.expediagroup:graphql-kotlin-schema-generator:6.3.5")
+
+
     implementation("io.micronaut.redis:micronaut-redis-lettuce")
     implementation("io.micronaut.cache:micronaut-cache-core")
 }
