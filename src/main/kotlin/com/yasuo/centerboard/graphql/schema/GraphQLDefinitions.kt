@@ -4,6 +4,7 @@ import com.yasuo.centerboard.quotes.QuoteService
 import com.yasuo.centerboard.repositories.AccountRepository
 import jakarta.inject.Inject
 import jakarta.inject.Singleton
+import org.slf4j.LoggerFactory
 import java.util.*
 
 data class Position(
@@ -44,11 +45,14 @@ class AccountQuery{
 class QuoteQuery{
     @Inject
     lateinit var quoteService: QuoteService
+    val logger = LoggerFactory.getLogger(QuoteQuery::class.java)
     fun quotes(): List<Quote>{
+        logger.debug("Asking service for quotes QUERY")
         return quoteService.getQuotes()
     }
 
     suspend fun quote(symbol: String):Quote{
+        logger.debug("Asking service for {} symbol",symbol)
         return quoteService.getQuoteBySymbol(symbol)
     }
 }
