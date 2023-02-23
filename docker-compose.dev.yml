@@ -3,6 +3,8 @@ services:
   redis:
     command:
       - "redis-server"
+      - "--port"
+      - "6379"
       - "--loglevel"
       - "debug"
     image: "redis:7.0.8"
