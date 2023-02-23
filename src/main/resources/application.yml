@@ -29,7 +29,7 @@ graphql:
         path: /graphiql
 
 redis:
-    uri: redis://127.0.0.1
+    uri: redis://localhost
     timeout: 100ms
     caches:
         quotes:
