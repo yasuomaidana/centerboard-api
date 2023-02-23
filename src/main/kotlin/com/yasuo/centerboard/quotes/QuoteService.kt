@@ -1,14 +1,11 @@
 package com.yasuo.centerboard.quotes
 
 import com.yasuo.centerboard.graphql.schema.Quote
-import io.micronaut.cache.annotation.CacheConfig
-import io.micronaut.cache.annotation.CachePut
 import jakarta.inject.Singleton
 import kotlinx.coroutines.delay
 import org.slf4j.LoggerFactory
 
 @Singleton
-@CacheConfig("quotes")
 class QuoteService {
 
     private val logger = LoggerFactory.getLogger(QuoteService::class.java)
@@ -23,7 +20,6 @@ class QuoteService {
         return quotes[symbol]!!
     }
 
-    @CachePut
     fun getQuotes():List<Quote>{
         logger.debug("Retrieving quotes")
         return quotes.map { (_,value) -> return listOf(value) }
