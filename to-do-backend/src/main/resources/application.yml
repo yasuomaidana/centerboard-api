@@ -6,6 +6,9 @@ datasources:
     driver-class-name: org.postgresql.Driver
     db-type: postgres
     dialect: POSTGRES
+    password: 'password'
+    url: jdbc:postgresql://localhost:5432/to_do
+    username: to_do
 netty:
   default:
     allocator:
