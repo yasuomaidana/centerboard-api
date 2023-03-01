@@ -1,6 +1,0 @@
-applicationType: default
-defaultPackage: com.yasuo.centerboard
-testFramework: junit
-sourceLanguage: kotlin
-buildTool: gradle_kotlin
-features: [annotation-api, app-name, flyway, gradle, graphql, h2, http-client, jackson-databind, jdbc-hikari, junit, kotlin, kotlin-application, kotlin-build, kotlin-extension-functions, logback, micronaut-build, netty-server, properties, readme, shade, sql-jdbi]

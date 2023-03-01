@@ -1,4 +1,4 @@
-package com.yasuo.centerboard
+package com.yasuo
 
 import io.micronaut.runtime.Micronaut.run
 fun main(args: Array<String>) {
