@@ -1,0 +1,10 @@
+version: '3.3'
+services:
+  postgres:
+    image: "postgres:10.4"
+    environment:
+      POSTGRES_USER: to_do
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: to_do
+    ports:
+      - "5432:5432"
