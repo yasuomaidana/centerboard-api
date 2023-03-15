@@ -1,4 +1,4 @@
-package com.yasuo.mappers.ToDo
+package com.yasuo.mappers
 
 import com.yasuo.entities.ToDo
 import com.yasuo.graphql.schemas.AuthorSchema
