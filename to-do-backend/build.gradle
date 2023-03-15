@@ -32,6 +32,9 @@ dependencies {
     runtimeOnly("org.postgresql:postgresql")
     compileOnly("org.graalvm.nativeimage:svm")
 
+    implementation("org.mapstruct:mapstruct:1.5.3.Final")
+    kapt("org.mapstruct:mapstruct-processor:1.5.3.Final")
+
     implementation("io.micronaut:micronaut-validation")
 
     runtimeOnly("com.fasterxml.jackson.module:jackson-module-kotlin")
