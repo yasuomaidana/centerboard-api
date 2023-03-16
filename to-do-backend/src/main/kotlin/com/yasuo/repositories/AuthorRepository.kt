@@ -7,8 +7,4 @@ import io.micronaut.data.repository.CrudRepository
 abstract class AuthorRepository:CrudRepository<Author, Long> {
     abstract fun findByUsername(username: String): Author?
     abstract fun findByIdIn(ids: Collection<Long>):Collection<Author>
-
-    fun findOrCreate(username: String): Author{
-        return findByUsername(username) ?: save(Author(username))
-    }
 }

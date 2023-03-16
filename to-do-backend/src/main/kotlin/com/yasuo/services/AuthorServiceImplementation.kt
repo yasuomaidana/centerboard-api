@@ -18,6 +18,6 @@ class AuthorServiceImplementation:AuthorService {
     }
 
     override fun findOrCreate(username: String): Author {
-        return authorRepository.findOrCreate(username)
+        return authorRepository.findByUsername(username) ?: authorRepository.save(Author(username))
     }
 }
