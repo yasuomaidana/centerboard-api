@@ -1,6 +1,7 @@
 package com.yasuo.graphql.schemas
 
 import com.expediagroup.graphql.generator.annotations.GraphQLName
+import com.yasuo.mappers.ToDoMapper
 import com.yasuo.services.ToDoService
 import jakarta.inject.Inject
 import jakarta.inject.Singleton
@@ -22,8 +23,22 @@ class AuthorQuery{
 class ToDoQuery{
     @Inject
     lateinit var  toDoService: ToDoService
-    fun get():Iterable<ToDoSchema>{
-        //toDoService.getAll().map { raw -> ToDoSchema( raw.id.toInt(), raw.title, raw.completed,raw.) }
-        return listOf()
+    @Inject
+    lateinit var toDoMapper: ToDoMapper
+    fun getToDos():List<ToDoSchema>{
+
+        return toDoService.getAll().map { toDo -> toDoMapper.convertToToDoSchema(toDo!!) }
+    }
+}
+
+@Singleton
+class ToDoMutation{
+    @Inject
+    lateinit var toDoService: ToDoService
+    @Inject
+    lateinit var toDoMapper: ToDoMapper
+    fun createToDo(title: String, username: String):ToDoSchema{
+        val savedToDo = toDoService.createToDo(title, username)
+        return toDoMapper.convertToToDoSchema(savedToDo)
     }
 }
