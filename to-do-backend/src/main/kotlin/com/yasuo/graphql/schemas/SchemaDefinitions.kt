@@ -12,6 +12,7 @@ data class AuthorSchema(val id:Int, val username:String)
 @GraphQLName("ToDo")
 data class ToDoSchema(val id:Int, val title: String, val completed:Boolean, val author: AuthorSchema)
 
+@Suppress("unused")
 @Singleton
 class AuthorQuery{
     fun getAuthor():AuthorSchema{
@@ -20,18 +21,20 @@ class AuthorQuery{
 }
 
 @Singleton
+@Suppress("unused")
 class ToDoQuery{
     @Inject
     lateinit var  toDoService: ToDoService
     @Inject
     lateinit var toDoMapper: ToDoMapper
-    fun getToDos():List<ToDoSchema>{
+    fun toDos():List<ToDoSchema>{
 
         return toDoService.getAll().map { toDo -> toDoMapper.convertToToDoSchema(toDo!!) }
     }
 }
 
 @Singleton
+@Suppress("unused")
 class ToDoMutation{
     @Inject
     lateinit var toDoService: ToDoService
