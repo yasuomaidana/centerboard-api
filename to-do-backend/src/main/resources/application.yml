@@ -23,3 +23,9 @@ graphql:
     graphiql:
         enabled: true
         path: /graphiql
+team:
+  name: 'Steelers'
+  color: 'Black'
+  player-names:
+    - 'Mason Rudolph'
+    - 'James Connor'
