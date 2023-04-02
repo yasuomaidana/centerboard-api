@@ -29,3 +29,7 @@ team:
   player-names:
     - 'Mason Rudolph'
     - 'James Connor'
+  team-admin:
+    manager: 'Nirav Assar'
+    coach: 'Mike Tomlin'
+    president: 'Dan Rooney'
