@@ -33,3 +33,11 @@ team:
     manager: 'Nirav Assar'
     coach: 'Mike Tomlin'
     president: 'Dan Rooney'
+
+stadium:
+  coors:
+    city: 'Denver'
+    size: 50000
+  pnc:
+    city: 'Pittsburgh'
+    size: 35000
