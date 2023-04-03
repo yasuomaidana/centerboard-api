@@ -12,6 +12,6 @@ class AuthorController {
     lateinit var authorRepository:AuthorRepository
     @Get
     fun getAuthors():List<Author>{
-        return authorRepository.findAll() as List<Author>
+        return authorRepository.findAll().map { author: Author? ->  author!!}
     }
 }

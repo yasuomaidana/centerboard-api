@@ -6,5 +6,5 @@ interface AuthorService {
     fun findByUsername(username: String): Author?
     fun findByIdIn(ids: Collection<Long>):Collection<Author>
     fun findOrCreate(username: String): Author
-
+    fun getAll(): Collection<Author>
 }
