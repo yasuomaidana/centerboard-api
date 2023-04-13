@@ -1,5 +1,7 @@
 package com.yasuo.controllers
 
+import com.yasuo.configuration.StadiumConfiguration
+import com.yasuo.configuration.TeamAdmin
 import com.yasuo.configuration.TeamConfiguration
 import io.micronaut.http.HttpRequest
 
@@ -36,17 +38,16 @@ class TeamControllerTest(@Client("/team") val client: HttpClient) {
 
     @Test
     fun defaultStadium() {
+        val stadium = client.toBlocking().retrieve(HttpRequest.GET<Any>("/stadium"),StadiumConfiguration::class.java)
+        assertEquals("Pittsburgh",stadium.city)
     }
 
     @Test
-    fun stadium() {
-    }
-
-    @Test
-    fun getTeamConfiguration() {
-    }
-
-    @Test
-    fun getStadiumConfiguration() {
+    fun getAdmin() {
+        val teamAdmin = client.toBlocking()
+                .retrieve(HttpRequest.GET<Any>("/admin"), TeamAdmin::class.java)
+        assertEquals("Mike Tomlin",teamAdmin.coach)
+        assertEquals("Nirav Assar",teamAdmin.manager)
+        assertEquals("Dan Rooney",teamAdmin.president)
     }
 }
