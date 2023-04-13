@@ -1,6 +1,7 @@
 package com.yasuo.controllers
 
 import com.yasuo.configuration.StadiumConfiguration
+import com.yasuo.configuration.TeamAdmin
 import com.yasuo.configuration.TeamConfiguration
 import io.micronaut.context.ApplicationContext
 import io.micronaut.context.exceptions.NoSuchBeanException
@@ -22,6 +23,11 @@ class TeamController(val teamConfiguration: TeamConfiguration, @Named("pnc") val
     @Get("/all")
     fun getAll():TeamConfiguration{
         return teamConfiguration
+    }
+
+    @Get("/admin")
+    fun getAdmin():TeamAdmin{
+        return teamConfiguration.teamAdmin.build()
     }
     @Get("/stadium")
     fun defaultStadium(): StadiumConfiguration{
