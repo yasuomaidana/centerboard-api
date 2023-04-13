@@ -1,7 +1,10 @@
 package com.yasuo.graphql.schemas
 
 import com.expediagroup.graphql.generator.annotations.GraphQLName
+import com.yasuo.entities.Author
+import com.yasuo.mappers.AuthorMapper
 import com.yasuo.mappers.ToDoMapper
+import com.yasuo.services.AuthorService
 import com.yasuo.services.ToDoService
 import jakarta.inject.Inject
 import jakarta.inject.Singleton
@@ -15,8 +18,12 @@ data class ToDoSchema(val id:Int, val title: String, val completed:Boolean, val 
 @Suppress("unused")
 @Singleton
 class AuthorQuery{
-    fun getAuthor():AuthorSchema{
-        return AuthorSchema(1,"Hi")
+    @Inject
+    lateinit var authorService: AuthorService
+    @Inject
+    lateinit var authorMapper: AuthorMapper
+    fun authors(): List<AuthorSchema> {
+        return authorService.getAll().map { author: Author ->  authorMapper.convertToAuthorSchema(author)}
     }
 }
 

@@ -23,6 +23,7 @@ class GraphQLFactory {
     lateinit var toDoQuery: ToDoQuery
     @Bean
     @Singleton
+    @Suppress("unused")
     fun graphQL(resourceResolver: ResourceResolver): GraphQL{
         val config = SchemaGeneratorConfig(supportedPackages = listOf("com.yasuo.graphql.schemas"))
         val queries = listOf(TopLevelObject(authorQuery), TopLevelObject(toDoQuery))

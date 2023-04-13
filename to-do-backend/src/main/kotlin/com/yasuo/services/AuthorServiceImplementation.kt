@@ -20,4 +20,8 @@ class AuthorServiceImplementation:AuthorService {
     override fun findOrCreate(username: String): Author {
         return authorRepository.findByUsername(username) ?: authorRepository.save(Author(username))
     }
+
+    override fun getAll(): List<Author> {
+        return authorRepository.findAll().map { author: Author? -> author!! }
+    }
 }
