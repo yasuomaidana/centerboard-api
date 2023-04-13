@@ -1,9 +1,11 @@
 package com.yasuo.configuration
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import io.micronaut.context.annotation.ConfigurationBuilder
 import io.micronaut.context.annotation.ConfigurationProperties
 
 @ConfigurationProperties("team")
+@JsonIgnoreProperties("teamAdmin")
 class TeamConfiguration {
     var name: String? = null
     var color: String? = null
