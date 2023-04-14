@@ -1,6 +1,14 @@
 micronaut:
   application:
     name: toDoBackend
+  server:
+    cors:
+      enabled: true
+      configurations:
+        all:
+          allowedOrigins:
+            - ^http(|s):\/\/localhost:3000$
+
 datasources:
   default:
     driver-class-name: org.postgresql.Driver
