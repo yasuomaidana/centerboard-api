@@ -38,6 +38,8 @@ graphql:
 github:
   organization: micronaut-projects
   repo: micronaut-core
+  username:
+  token:
 
 team:
   name: 'Steelers'
