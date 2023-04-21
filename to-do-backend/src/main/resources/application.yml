@@ -8,6 +8,10 @@ micronaut:
         all:
           allowedOrigins:
             - ^http(|s):\/\/localhost:3000$
+  http:
+    services:
+      github:
+        url: 'https://api.github.com'
 
 datasources:
   default:
@@ -31,6 +35,10 @@ graphql:
     graphiql:
         enabled: true
         path: /graphiql
+github:
+  organization: micronaut-projects
+  repo: micronaut-core
+
 team:
   name: 'Steelers'
   color: 'Black'
