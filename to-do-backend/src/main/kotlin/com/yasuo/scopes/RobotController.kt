@@ -10,7 +10,13 @@ import java.util.*
 @Suppress("unused")
 class RobotController(private val father: RobotFather, private val mother: RobotMother,
                       private  val prototypeMother: com.yasuo.scopes.prototype.RobotMother,
-                      private val prototypeFather: com.yasuo.scopes.prototype.RobotFather) {
+                      private val prototypeFather: com.yasuo.scopes.prototype.RobotFather,
+                      private val requestFather: com.yasuo.scopes.request_scope.RobotFather,
+                      private val requestMother: com.yasuo.scopes.request_scope.RobotMother
+                        ) {
+
+
+
     @Get("/singleton")
     fun children():List<String>{
         return listOf(father.child().serialNumber, mother.child().serialNumber)
@@ -19,6 +25,12 @@ class RobotController(private val father: RobotFather, private val mother: Robot
     @Get("/prototype")
     fun prototypeRobot():List<String>{
         return listOf(prototypeFather.child().serialNumber, prototypeMother.child().serialNumber)
+    }
+
+    @Get("/request")
+    fun requestRobot():List<String>{
+
+        return listOf(requestFather.child().serialNumber, requestMother.child().serialNumber)
     }
 
 }
