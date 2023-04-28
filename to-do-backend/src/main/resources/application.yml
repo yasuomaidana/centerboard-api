@@ -13,6 +13,9 @@ micronaut:
       github:
         url: 'https://api.github.com'
 
+context_micronaut:
+  language: kotlin
+
 datasources:
   default:
     driver-class-name: org.postgresql.Driver
